@@ -10,9 +10,11 @@ def index():
     return render_template('index.html')
 
 
-def customers():
+@app.route("/dashboard")
+def dashboard():
     # this is a comment
-    return null
+    return render_template('dashboard.html')
+
 
 if __name__ == "__main__":
     app.run()

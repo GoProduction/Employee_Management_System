@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Employee Management Systems {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../static/style/dashboard.css" rel="stylesheet">
 </head>
 <body>
 
 <!-- Navigation Bar -->
 
  <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
-    <a class="navbar-brand" href="/"><img src="../static/logo.png" width="25" height="25" class="d-inline-block align-top" alt=""> Employee Management Software</a>
+    <a class="navbar-brand" href="/"><img src="../static/logo.png" width="32" height="32" class="d-inline-block align-top" alt="">     <!-- Company Name> --></a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      <form class="form-inline" method="POST" action="/search">
+        <input class="form-control mr-sm-2 form-control-sm" style="width: 450px" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary my-2 btn-sm" type="submit">Search</button>
+      </form>
+
       <ul class="navbar-nav mr-auto">
       </ul>
-      <form class="form-inline mt-2 mt-md-0" method="POST" action="/login">
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" name="nm" placeholder="Email" required>
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" name="np" placeholder="Password" required>
-        <button class="btn btn-secondary my-2 btn-sm" type="submit" name="submit" value="Log In">Login</button>
+      <form class="form-inline mt-2 mt-md-0" method="POST" action="/logout">
+        <button class="btn btn-primary my-2 btn-sm" type="submit" name="submit" value="Log In">Logout</button>
       </form>
     </div>
  </nav>
@@ -29,13 +35,6 @@
 <div>
     {% block content %}
     {% endblock %}
-</div>
-
-<!-- Footer -->
-
-<div class="container">
-    <p align="center">Made with <span style="color: #e25555;">&#9829;</span> by The Web Debbies</p>
-    <br/>
 </div>
 
 <!-- JavaScript -->
