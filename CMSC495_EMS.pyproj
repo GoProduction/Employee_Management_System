@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{234e2a79-41ed-4b40-9a22-9a35baebdd6f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>app.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app.py" />
+    <Compile Include="connection.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="network\wallet\cwallet.sso" />
+    <Content Include="network\wallet\ewallet.p12" />
+    <Content Include="network\wallet\keystore.jks" />
+    <Content Include="network\wallet\ojdbc.properties" />
+    <Content Include="network\wallet\README" />
+    <Content Include="network\wallet\sqlnet.ora" />
+    <Content Include="network\wallet\tnsnames.ora" />
+    <Content Include="network\wallet\truststore.jks" />
+    <Content Include="static\images\team-1.svg" />
+    <Content Include="static\images\team-2.svg" />
+    <Content Include="static\images\team-3.svg" />
+    <Content Include="static\images\team-talk.svg" />
+    <Content Include="static\images\team.svg" />
+    <Content Include="static\logo.png" />
+    <Content Include="templates\base.html" />
+    <Content Include="templates\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="network\" />
+    <Folder Include="network\wallet\" />
+    <Folder Include="static" />
+    <Folder Include="static\images" />
+    <Folder Include="templates" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
