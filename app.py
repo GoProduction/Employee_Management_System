@@ -1,14 +1,14 @@
 from flask import Flask, render_template
 import connection
 import cx_Oracle
+from controllers import employees_controller
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    connection.connect_db()
+    employees_controller.get_employees
     return render_template('index.html')
-
 
 @app.route("/dashboard")
 def dashboard():

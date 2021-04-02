@@ -23,6 +23,9 @@
     <Compile Include="connection.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="controllers\employees_controller.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="network\wallet\cwallet.sso" />
@@ -46,6 +49,7 @@
     <Folder Include="data\" />
     <Folder Include="network\" />
     <Folder Include="network\wallet\" />
+    <Folder Include="controllers\" />
     <Folder Include="static" />
     <Folder Include="static\images" />
     <Folder Include="templates" />
