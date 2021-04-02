@@ -21,9 +21,9 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route("/department")
+@app.route("/directory")
 def department():
-    return render_template('department.html')
+    return render_template('directory.html')
 
 
 @app.route("/user-add")
