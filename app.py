@@ -1,15 +1,20 @@
-from flask import Flask, render_template
+import os
+from flask import Flask, render_template, request, url_for, session
 import connection
-# import cx_Oracle
+import cx_Oracle
 from controllers import employees_controller
 
 app = Flask(__name__)
+
+the_key = os.urandom(16)
+app.secret_key = the_key
 
 
 @app.route("/")
 def index():
     employees_controller.get_employees()
     return render_template('index.html')
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -35,6 +40,6 @@ def user_remove():
 def settings():
     return render_template('settings.html')
 
+
 if __name__ == "__main__":
     app.run()
-
