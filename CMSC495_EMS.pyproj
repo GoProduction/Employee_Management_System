@@ -28,6 +28,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\newfolder.txt" />
     <Content Include="network\wallet\cwallet.sso" />
     <Content Include="network\wallet\ewallet.p12" />
     <Content Include="network\wallet\keystore.jks" />
