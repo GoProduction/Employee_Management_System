@@ -13,7 +13,7 @@ def index():
 
 @app.route("/dashboard")
 def dashboard():
-    return render_template('department.html')
+    return render_template('dashboard.html')
 
 
 @app.route("/department")
