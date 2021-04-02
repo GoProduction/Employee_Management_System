@@ -11,6 +11,10 @@ def index():
     employees_controller.get_employees()
     return render_template('index.html')
 
+@app.route("/dashboard")
+def dashboard():
+    return render_template('department.html')
+
 
 @app.route("/department")
 def department():
