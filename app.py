@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, url_for, session
 import connection
 import cx_Oracle
-from controllers import employees_controller
+from controllers import employees_controller, department_controller, tasks_controller, status_controller
 
 app = Flask(__name__)
 
@@ -12,9 +12,15 @@ app.secret_key = the_key
 
 @app.route("/")
 def index():
-    employees_controller.get_employees()
     return render_template('index.html')
 
+@app.route("/test-data")
+def test_data():
+    departments = department_controller.get_departments()
+    employees = employees_controller.get_employees()
+    tasks = tasks_controller.get_tasks()
+    status = status_controller.get_status()
+    return render_template('test-data.html', employees=employees, departments=departments, tasks=tasks, status=status)
 
 @app.route("/dashboard")
 def dashboard():

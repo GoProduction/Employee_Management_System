@@ -1,0 +1,100 @@
+{% extends "base_dash.html" %}
+{% set active_page = "test-data" %}
+{% block title %}Empower Deez Nutz!{% endblock %}
+{% block content %}
+
+
+<!-- Content Panel-->
+
+<main role="main" class="col-md-11 ml-sm-auto col-lg-11 pt-3 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Test Data Page</h1>
+    </div>
+    <div>
+        <h2>Employees</h2>
+        <table id="employees-table" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Title</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.empID }}</td>
+                    <td>{{ employee.fname }}</td>
+                    <td>{{ employee.lname }}</td>
+                    <td>{{ employee.title }}</td>
+                    <td>{{ employee.get_department_title(departments) }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone }}</td>
+                </tr>
+                {% else %}
+                <tr>There are no employees.</tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Departments</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dept in departments %}
+                <tr>
+                    <td>{{ dept.deptID }}</td>
+                    <td>{{ dept.deptTitle }}</td>
+                    <td></td>
+                </tr>
+                {% else %}
+                <tr>There are no departments.</tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Tasks</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Date and Time</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks%}
+                <tr>
+                    <td>{{ task.taskID }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.datetime }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.get_status_name(status) }}</td>
+                </tr>
+                {% else %}
+                <tr>There are no tasks.</tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </main>
+
+<!-- Footer -->
+            <div>
+                <div class="container">
+                    <p align="center">Made with <span style="color: #e25555;">&#9829;</span> by The Web Debbies</p>
+                    <br/>
+                </div>
+            </div>
+
+
+{% endblock %}

@@ -1,11 +1,9 @@
-from data.Classes.Department import Department
-
 
 class Employee:
     def __init__(self, empID, deptID, fname, lname, title,
-                 email, phone):
+                 phone, email):
         self.empID = empID
-        self.deptID = Department.deptID
+        self.deptID = deptID
         self.fname = fname
         self.lname = lname
         self.title = title
@@ -14,3 +12,8 @@ class Employee:
 
     def fullname(self):
         return '{} {}'.format(self.fname, self.lname)
+
+    def get_department_title(self, list):
+        for val in list:
+            if val.deptID == self.deptID:
+                return val.deptTitle

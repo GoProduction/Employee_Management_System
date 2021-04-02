@@ -1,4 +1,4 @@
 class Status:
-    def __init__(self, StatusID, name):
-        self.statusID = self.statusID
+    def __init__(self, statusID, name):
+        self.statusID = statusID
         self.name = name
