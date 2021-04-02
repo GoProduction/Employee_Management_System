@@ -27,6 +27,11 @@ def dashboard():
     return render_template('dashboard.html')
 
 
+@app.route("/report")
+def report():
+    return render_template('report.html')
+
+
 @app.route("/directory")
 def department():
     return render_template('directory.html')
@@ -40,6 +45,11 @@ def user_add():
 @app.route("/user-remove")
 def user_remove():
     return render_template('user-remove.html')
+
+
+@app.route("/info-guide")
+def info_guide():
+    return render_template('info-guide.html')
 
 
 @app.route("/settings")
