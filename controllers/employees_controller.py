@@ -1,5 +1,5 @@
-
 import connection
+import cx_Oracle
 
 def get_employees():
     c = connection.connect_db()
