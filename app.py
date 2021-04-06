@@ -22,6 +22,7 @@ def test_data():
     status = status_controller.get_status()
     return render_template('test-data.html', employees=employees, departments=departments, tasks=tasks, status=status)
 
+
 @app.route("/dashboard")
 def dashboard():
     return render_template('dashboard.html')

@@ -2,7 +2,7 @@ from connection import connect_db
 import cx_Oracle
 from data.Classes.Tasks import Tasks
 
-# get all employees
+# get all tasks
 def get_tasks():
     conn = connect_db()
     c = conn.cursor()

@@ -2,7 +2,7 @@ from connection import connect_db
 import cx_Oracle
 from data.Classes.Status import Status
 
-# get all employees
+# get all status'
 def get_status():
     conn = connect_db()
     c = conn.cursor()

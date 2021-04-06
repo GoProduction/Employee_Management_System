@@ -2,7 +2,7 @@ from connection import connect_db
 import cx_Oracle
 from data.Classes.Department import Department
 
-# get all employees
+# get all departments
 def get_departments():
     conn = connect_db()
     c = conn.cursor()
