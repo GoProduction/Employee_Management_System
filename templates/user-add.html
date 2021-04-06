@@ -13,33 +13,71 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <div class="card">
-          <h5 class="card-header">Employee Information</h5>
+        <div class="card mb-4">
+          <h5 class="card-header">New Employee's Information</h5>
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-        <br>
-      </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <h5 class="card-header">Featured</h5>
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputfirstname">First Name</label>
+      <input type="text" class="form-control" id="inputfirstname" placeholder="John">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputlastname">Last Name</label>
+      <input type="text" class="form-control" id="inputlastname" placeholder="Doe">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputssd">Social Security Number</label>
+      <input type="text" class="form-control" id="inputssd" placeholder="123-45-6789">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="johndoe@example.com">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputphone">Phone Number</label>
+      <input type="text" class="form-control" id="inputphone" placeholder="(123) - 456 - 7890">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputdepartment">Department</label>
+      <input type="text" class="form-control" id="inputdepartment" placeholder="Information Technology">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputtitle">Title</label>
+      <input type="text" class="form-control" id="inputtitle" placeholder="Software Engineer">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputid">Employee ID</label>
+      <input type="text" class="form-control" id="inputid" placeholder="12345678">
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
           </div>
         </div>
       </div>
