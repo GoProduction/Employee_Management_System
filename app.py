@@ -43,6 +43,13 @@ def user_add():
     return render_template('user-add.html')
 
 
+@app.route("/user-add", methods=['POST'])
+def user_add_post():
+    # use message for displaying error/success
+    message = ""
+    return render_template("user-add.html", message=message)
+
+
 @app.route("/user-remove")
 def user_remove():
     return render_template('user-remove.html')
