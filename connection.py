@@ -12,5 +12,5 @@ def connect_db():
         conn = cx_Oracle.connect(db_username, db_password, db_connection_string)
         print('Successful connection')
         return conn
-    except NetworkError:
+    except (RuntimeError, TypeError, NameError):
         print('Cannot connect to DB')
