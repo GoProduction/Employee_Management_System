@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for, session
 import connection
 import cx_Oracle
 from controllers import employees_controller, department_controller, tasks_controller, status_controller
+from services import employee_service
 
 app = Flask(__name__)
 
@@ -38,16 +39,23 @@ def department():
     return render_template('directory.html')
 
 
-@app.route("/user-add")
+@app.route("/user-add", methods=['GET', 'POST'])
 def user_add():
-    return render_template('user-add.html')
+    message = []
 
+    data_list = employee_service.initialize_employee_array()
+    departments = department_controller.get_departments()
 
-@app.route("/user-add", methods=['POST'])
-def user_add_post():
-    # use message for displaying error/success
-    message = ""
-    return render_template("user-add.html", message=message)
+    if request.method == 'POST':
+        message = employee_service.add_employee_event()
+        if(message[0] != "Successfully created a new employee!"):
+            data_list = employee_service.transfer_field_state()
+            return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
+        else:
+            return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
+    else:
+        return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
+     
 
 
 @app.route("/user-remove")
