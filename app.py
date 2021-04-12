@@ -48,8 +48,19 @@ def user_add():
 
     if request.method == 'POST':
         message = employee_service.add_employee_event()
+
         if(message[0] != "Successfully created a new employee!"):
+            # collect field data into list (Employee, EmployeeInfo)
             data_list = employee_service.transfer_field_state()
+
+            #debug
+            for val in data_list:
+                print(val)
+
+            # call add_employee method from controller
+            employees_controller.add_employee(data_list)
+
+            # return render template
             return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
         else:
             return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
