@@ -21,7 +21,7 @@ def get_employees():
 
 # get a single employee
 def get_employee(id):
-    return null
+    return 0
     ## TODO: select by id
 
 
@@ -30,30 +30,57 @@ def get_latest_id():
     max_id_sql = "SELECT NVL(MAX(EMPLOYEE_ID), 0) AS MAX_ID FROM EMPLOYEES"
     conn = connect_db()
     c = conn.cursor()
-    max_id = c.execute(max_id_sql)
+    c.execute(max_id_sql)
+    max_id = 0
+    max = c.fetchone()
 
+    for num in max:
+        max_id = num
+
+    #debug
+    print("MaxID: ", max_id)
     return max_id
 
 
 # add employee and employee info
-def add_employee(self, employee, info):
+def add_employee(data_list):
     emp_sql = """ INSERT INTO EMPLOYEES(DEPARTMENT_ID, FIRST_NAME, LAST_NAME, TITLE, PHONE, EMAIL)
-                    VALUES(:deptID, :fName, :lName, :title, :phone, :email)"""
+                    VALUES(:depID, :f2ame, :l2ame, :title, :phone, :email)"""
     emp_info_sql = """ INSERT INTO EMPLOYEE_INFO(EMPLOYEE_ID, STREET_ADDRESS, CITY, STATE, ZIP_CODE, LICENSE_ID, SS_NUMBER)
                         VALUES(:empID, :address, :city, :state, :zipcode, :licenseID, :ssn)"""
     try:
+        # since cx_Oracle does not support tuples, the properties need to be
+            # instantiated separately. It's kind of ugly, but it is what it is...
+        depID = int(data_list[0])
+        title = str(data_list[1])
+        fname = str(data_list[2])
+        lname = str(data_list[3])
+        phone = int(data_list[4])
+        email = str(data_list[5])
+        address = str(data_list[6])
+        city = str(data_list[7])
+        state = str(data_list[8])
+        zip = int(data_list[9])
+        licenseID = str(data_list[10])
+        ssn = int(data_list[11])
+
         conn = connect_db()
         c = conn.cursor()
-    
-        c.execute(emp_sql, [employee.deptID, employee.fName, employee.lName, 
-                        employee.title, employee.phone, employee.email])
+        
+        # insert new Employee
+        c.execute(emp_sql, [depID, fname, lname, title, phone, email])
+        conn.commit()
 
-        c.execute(emp_info_sql, [info.empID, info.address, info.city, 
-                             info.state, info.zipcode, info.licenseID, info.ssn])
+        # get latest ID
+        latest_empID = get_latest_id()
+
+        # insert new EmployeeInfo
+        c.execute(emp_info_sql, [latest_empID, address, city, state, zip, licenseID, ssn])
+        conn.commit()
 
         conn.close()
-    except ValueError:
-        print("Value error on add_employee()")
+    except (RuntimeError, TypeError, NameError):
+        print("error on add_employee()")
 
 
 # check for email
