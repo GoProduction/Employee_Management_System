@@ -95,11 +95,10 @@ def transfer_field_state():
     title = request.form['inputTitle']
     license = request.form['inputLicense']
     
-    employee = Employee("", department, first_name, last_name, title, phone, email)
-    employee_info = EmployeeInfo("", "", address, city, state, zip, license, ssn)
-    
-    list.append(employee)
-    list.append(employee_info)
+    #employee = Employee("", department, first_name, last_name, title, phone, email)
+    #employee_info = EmployeeInfo("", "", address, city, state, zip, license, ssn)
+                #0             1    2           3           4       5       6     7     8      9    10      11
+    list.extend([department, title, first_name, last_name, phone, email, address, city, state, zip, license, ssn])
 
     return list
 
