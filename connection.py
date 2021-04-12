@@ -1,3 +1,4 @@
+from sys import platform
 import os
 import cx_Oracle
 
@@ -9,6 +10,10 @@ db_connection_string = "tcps://adb.us-ashburn-1.oraclecloud.com:1522/sdxlk72ygu0
 # DB connector
 def connect_db():
     try:
+        # for macOS users
+        if platform.platform()[:6] == 'Darwin':
+            cx_Oracle.init_oracle_client(lib_dir="instantclient\location\here")
+
         conn = cx_Oracle.connect(db_username, db_password, db_connection_string)
         print('Successful connection')
         return conn
