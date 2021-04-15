@@ -1,5 +1,9 @@
 import os
+from functools import wraps
+
 from flask import Flask, render_template, request, url_for, session
+from werkzeug.utils import redirect
+
 import connection
 import cx_Oracle
 from controllers import employees_controller, department_controller, tasks_controller, status_controller
@@ -11,11 +15,48 @@ the_key = os.urandom(16)
 app.secret_key = the_key
 
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
+
+@app.route("/login", methods=["POST"])
+def login():
+    try:
+        if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            # TODO: Checks database to see if username matches password
+
+            # if true assigns username to session
+            session['username'] = username
+            print(username + " " + password)
+            return redirect(url_for('dashboard'))
+
+            # else redirect the user back to the index page
+    except:
+        return redirect(url_for('index'))
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+
 @app.route("/test-data")
+@login_required
 def test_data():
     departments = department_controller.get_departments()
     employees = employees_controller.get_employees()
@@ -25,16 +66,19 @@ def test_data():
 
 
 @app.route("/dashboard")
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
 
 @app.route("/report")
+@login_required
 def report():
     return render_template('report.html')
 
 
 @app.route("/directory", methods=['GET', 'POST'])
+@login_required
 def department():
     departments = department_controller.get_departments()
     employees = employees_controller.get_employees()
@@ -48,6 +92,7 @@ def department():
 
 
 @app.route("/user-add", methods=['GET', 'POST'])
+@login_required
 def user_add():
     message = []
 
@@ -57,11 +102,11 @@ def user_add():
     if request.method == 'POST':
         message = employee_service.add_employee_event()
 
-        if(message[0] != "Successfully created a new employee!"):
+        if (message[0] != "Successfully created a new employee!"):
             # collect field data into list (Employee, EmployeeInfo)
             data_list = employee_service.transfer_field_state()
 
-            #debug
+            # debug
             for val in data_list:
                 print(val)
 
@@ -74,20 +119,22 @@ def user_add():
             return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
     else:
         return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
-     
 
 
 @app.route("/user-remove")
+@login_required
 def user_remove():
     return render_template('user-remove.html')
 
 
 @app.route("/info-guide")
+@login_required
 def info_guide():
     return render_template('info-guide.html')
 
 
 @app.route("/settings")
+@login_required
 def settings():
     return render_template('settings.html')
 
