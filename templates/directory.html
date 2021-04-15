@@ -7,86 +7,73 @@
 <!-- Content Panel-->
 
 <main role="main" class="col-md-11 ml-sm-auto col-lg-11 pt-3 px-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Directory</h1>
-  </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card mb-4">
-          <h5 class="card-header">Search By Category</h5>
-          <div class="card-body">
-
-<form class="form-row form-inline">
-      <div class="form-group col-md-6">
-         <select class="custom-select mr-2 col-sm-8" id="category">
-            <option>Choose...</option>
-            <option>Department</option>
-            <option>Title</option>
-            <option>Last Name</option>
-            <option>First Name</option>
-            <option>Employee ID</option>
-         </select>
-
-            <button class="btn btn-primary my-sm-0" type="button">Select</button>
-      </div>
-</form>
-
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <div class="card mb-4">
-          <h5 class="card-header">Category List</h5>
-          <div class="card-body">
-
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Employee ID</th>
-      <th scope="col">Department</th>
-      <th scope="col">Title</th>
-      <th scope="col">Lastname</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Management</td>
-      <td>CEO</td>
-      <td>Gates</td>
-      <td>Bill</td>
-      <td>veryveryrich@example.com</td>
-      <td>(123) 456 - 7890</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Technology</td>
-      <td>CTO</td>
-      <td>Zuckerberg</td>
-      <td>March</td>
-      <td>extremelywealthy@example.com</td>
-      <td>(123) 456 - 7890</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Technology</td>
-      <td>Software Engineer</td>
-      <td>Doe</td>
-      <td>John</td>
-      <td>hassomemoney@example.com</td>
-      <td>(123) 456 - 7890</td>
-    </tr>
-  </tbody>
-</table>
-
-          </div>
-        </div>
-      </div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Directory</h1>
     </div>
+    <form method="post">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card mb-4">
+                    <h5 class="card-header">Sort By Category</h5>
+                    <div class="card-body">
+
+
+                        <div class="form-group col-md-6">
+                            <select class="custom-select mr-2 col-sm-8" name="txtCategory" id="category">
+                                <option>Choose...</option>
+                                <option value="deptID">Department</option>
+                                <option value="title">Title</option>
+                                <option value="lname">Last Name</option>
+                                <option value="fname">First Name</option>
+                                <option value="empID">Employee ID</option>
+                            </select>
+
+                            <button class="btn btn-primary my-sm-0" type="submit">Select</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="card mb-4">
+                    <h5 class="card-header">Category List</h5>
+                    <div class="card-body">
+
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Employee ID</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Lastname</th>
+                                    <th scope="col">Firstname</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for emp in employees %}
+                                <tr>
+                                    <td>{{ emp.empID }}</td>
+                                    <td>{{ emp.get_department_title(departments) }}</td>
+                                    <td>{{ emp.title }}</td>
+                                    <td>{{ emp.lname }}</td>
+                                    <td>{{ emp.fname }}</td>
+                                    <td>{{ emp.email }}</td>
+                                    <td>{{ emp.phone }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </main>
 
 <!-- Footer -->
