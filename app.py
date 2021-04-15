@@ -34,9 +34,17 @@ def report():
     return render_template('report.html')
 
 
-@app.route("/directory")
+@app.route("/directory", methods=['GET', 'POST'])
 def department():
-    return render_template('directory.html')
+    departments = department_controller.get_departments()
+    employees = employees_controller.get_employees()
+
+    # POST is requested when sorting button is selected
+    if request.method == 'POST':
+        employees_sorted = employee_service.sort_employee_list(employees)
+        return render_template('directory.html', departments=departments, employees=employees_sorted)
+
+    return render_template('directory.html', departments=departments, employees=employees)
 
 
 @app.route("/user-add", methods=['GET', 'POST'])
