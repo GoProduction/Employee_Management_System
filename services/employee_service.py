@@ -1,8 +1,21 @@
+import operator
 from flask import Flask, request
 from controllers import employees_controller, employee_info_controller
 from services import validation
 from data.Classes.Employees import Employee
 from data.Classes.EmployeeInfo import EmployeeInfo
+
+# retrieves and returns the value as a property from a drop-down field
+def get_sort_property(field_name):
+    prop = request.form.get(field_name)
+    return str(prop)
+
+# takes in list and returns sorted employee list from selected drop-down value
+def sort_employee_list(list):
+    prop = get_sort_property('txtCategory')
+    sorted_list = sorted(list, key=operator.attrgetter(prop))
+
+    return sorted_list
 
 # add employee method for the add-user page
 def add_employee_event():
@@ -79,6 +92,7 @@ def add_employee_event():
     except ValueError:
         print("Must be a number.")
 
+# takes field values from add-user page
 def transfer_field_state():
     list = []
 
@@ -102,6 +116,7 @@ def transfer_field_state():
 
     return list
 
+# initializes array to join Employee and EmployeeInfo objects
 def initialize_employee_array():
     list = []
     employee = Employee("", "", "", "", "", "", "")
