@@ -7,7 +7,7 @@ from werkzeug.utils import redirect
 import connection
 import cx_Oracle
 from controllers import employees_controller, department_controller, tasks_controller, status_controller
-from services import employee_service
+from services import employee_service, user_service
 
 app = Flask(__name__)
 
@@ -35,16 +35,13 @@ def login():
     try:
         if request.method == 'POST':
             username = request.form['username']
-            password = request.form['password']
-            # TODO: Checks database to see if username matches password
+            if (user_service.validate_user() == True):
+                # if true assigns username to session
+                session['username'] = username
+                return redirect(url_for('dashboard'))
 
-            # if true assigns username to session
-            session['username'] = username
-            print(username + " " + password)
-            return redirect(url_for('dashboard'))
-
-            # else redirect the user back to the index page
-    except:
+            return redirect(url_for('index'))
+    except Exception:
         return redirect(url_for('index'))
 
 
