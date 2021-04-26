@@ -83,6 +83,20 @@ def add_employee(data_list):
         print("error on add_employee()")
 
 
+# removes employee after providing employee id
+def remove_employee(id):
+    try:
+        sql = """ DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = :id """
+        conn = connect_db()
+        c = conn.cursor()
+
+        c.execute(sql, [id])
+        conn.commit()
+        conn.close()
+        print("Removed employee with id: ", id)
+    except (RuntimeError, TypeError, NameError):
+        print("error on remove_employee()")
+
 # check for email
 def email_is_taken(email):
     found_email = []

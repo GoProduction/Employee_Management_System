@@ -5,6 +5,12 @@ from services import validation
 from data.Classes.Employees import Employee
 from data.Classes.EmployeeInfo import EmployeeInfo
 
+# retrieves employee id from field
+def get_id_from_field(field_name):
+    id = request.form.get(field_name)
+    print("Selected ID: ", id)
+    return int(id)
+
 # retrieves and returns the value as a property from a drop-down field
 def get_sort_property(field_name):
     prop = request.form.get(field_name)
