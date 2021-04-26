@@ -3,6 +3,7 @@ from sys import platform
 import os
 import cx_Oracle
 
+
 # connection properties for Oracle Cloud DB
 db_username = "ADMIN"
 db_password = "nb9QRpFzHEQgbV3"
@@ -14,10 +15,12 @@ def connect_db():
     try:
         # for macOS users
         if sys.platform.startswith("darwin"):
-            cx_Oracle.init_oracle_client(lib_dir=r"/Users/francisbui/desktop/instantclient_19_8")
+            cx_Oracle.init_oracle_client(lib_dir=r"/Users/francisbui/Desktop/instantclient_19_8")
 
         conn = cx_Oracle.connect(db_username, db_password, db_connection_string)
         print('Successful connection')
         return conn
     except (RuntimeError, TypeError, NameError):
         print('Cannot connect to DB')
+
+connect_db()
