@@ -28,6 +28,10 @@ def login_required(f):
 def index():
     return render_template('index.html')
 
+@app.route("/testindex")
+def testindex():
+    return render_template('testindex.html')
+
 
 @app.route("/login", methods=["POST"])
 def login():

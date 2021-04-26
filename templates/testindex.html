@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}Empower Your Office Today!{% endblock %}
+{% block content %}
+
+<!-- Welcome Message -->
+
+<div class="jumbotron">
+    <div class="row">
+      <div class="col-4">
+        <img src="../static/images/team-2.svg"/>
+      </div>
+
+      <div class="col-8" style="padding: 200px 0;">
+                <br/>
+        <h2>Looking For The Best EMS?</h2>
+            <h3 class="text-muted">Simplicity In Design</h3>
+        <br/>
+                <p>Business are operating larger today than ever in history. You need a system that can manage
+                your internal operations and scale as your company grows. Let us manage your workflow with
+                streamlined tools that can help you better manage your employees!</p>
+        <br/>
+		  			  <!-- Trigger the modal with contact us button -->
+			  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal">Learn More!</button>
+
+			  <!-- Modal -->
+			  <div class="modal fade" id="modal" role="dialog">
+				<div class="modal-dialog">
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-body">
+						<div style="text-align: center;"><h5>Call us today to hear why EMS is a great fit for you!</h5>
+							<img src="../static/images/phone.svg"/>
+							555-555-5555
+						</div>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+                  </div>
+                </div>
+              </div>
+      </div>
+    </div>
+</div>
+
+<div class="jumbotron">
+<div class="col align-self-center">
+<div class="accordion" id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+		<button class="btn btn-primary btn-lg btn-block"" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		<h5>Simple, Modern Interface!</h5>
+		</button>
+	</div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+		  <center>EMS provides a simple, intuitive employee management system so that you can easily track employee information.</center>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-primary btn-lg btn-block"" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			<h5>Easily track employee information!</h5>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+		  <div style="text-align: center;">Boost your productivity and easily capture the employee data that matters.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-primary btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			<h5>Reports at the touch of a button!</h5>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+		  <div style="text-align: center;">In EMS, you can easily run detailed employee reports at the click of a button.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+<!-- Closing -->
+<div class="jumbotron">
+    <div class="row">
+      <div class="col-7">
+                <br/>
+        <h2>Integrate with Existing Infrastructure</h2>
+            <h3 class="text-muted">Workflow Friendly</h3>
+        <br/>
+                <p>EMS makes it easy to integrate with your existing employee management infrastructure.  Call us today to find out more information!</p>
+        <br/>
+
+			  <!-- Trigger the modal with contact us button -->
+			  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal">Contact Us!</button>
+
+			  <!-- Modal -->
+			  <div class="modal fade" id="modal" role="dialog">
+				<div class="modal-dialog">
+				  <!-- Modal content-->
+				  <div class="modal-content">
+					<div class="modal-body">
+						<div style="text-align: center;"><h5>Call us today to hear why EMS is a great fit for you!</h5>
+							<img src="../static/images/phone.svg"/>
+							<h5>555-555-5555</h5>
+						</div>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+    </div>
+  </div>
+
+</div>
+				</p>
+                <br/>
+      </div>
+      <div class="col-5">
+        <img src="../static/images/team.svg"/>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
