@@ -120,10 +120,17 @@ def user_add():
         return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
 
 
-@app.route("/user-remove")
+@app.route("/user-remove", methods=['GET', 'POST'])
 @login_required
 def user_remove():
-    return render_template('user-remove.html')
+    users = employees_controller.get_employees()
+    if request.method == 'POST':
+        id = employee_service.get_id_from_field('selectField')
+        employees_controller.remove_employee(id)
+        #reinstantiate user list to reflect removed user
+        users = employees_controller.get_employees()
+        return render_template('user-remove.html', users=users)
+    return render_template('user-remove.html', users=users)
 
 
 @app.route("/info-guide")
