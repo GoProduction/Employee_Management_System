@@ -18,17 +18,16 @@
           <div class="card-body">
 
 
-<form class="form-row form-inline">
-      <div class="form-group col-md-6">
-         <select class="custom-select mr-2 col-sm-8" id="category">
-            <option>Choose...</option>
-            <option>CEO - Bill Gates</option>
-            <option>CTO - Mark Zuckerberg</option>
-            <option>Software Engineer - John Doe</option>
-         </select>
-
-            <button class="btn btn-danger my-sm-0" type="button">Select</button>
-      </div>
+<form class="form-row form-inline" method="post">
+    <div class="form-group col-md-6">
+        <select class="custom-select mr-2 col-sm-8" name="selectField" id="category">
+            <option>Select a user...</option>
+            {% for user in users %}
+            <option value={{user.empID}} selected>{{user.fname}} {{user.lname}}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-danger my-sm-0" type="submit">Delete</button>
+    </div>
 </form>
 
           </div>
