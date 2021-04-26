@@ -21,7 +21,6 @@ def login_required(f):
         if 'username' not in session:
             return redirect(url_for('index'))
         return f(*args, **kwargs)
-
     return decorated_function
 
 
@@ -39,7 +38,6 @@ def login():
                 # if true assigns username to session
                 session['username'] = username
                 return redirect(url_for('dashboard'))
-
             return redirect(url_for('index'))
     except Exception:
         return redirect(url_for('index'))
@@ -68,7 +66,7 @@ def dashboard():
     return render_template('dashboard.html')
 
 
-@app.route("/report")
+@app.route("/report", methods=["GET", "POST"])
 @login_required
 def report():
     return render_template('report.html')
