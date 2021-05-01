@@ -20,7 +20,7 @@
           <div class="card-body">
 
               <form class="form-inline" method="post" action="/get-user-info">
-                <select name="selectUser" class="custom-select mr-3">
+                <select name="selectUser" class="custom-select mr-2 col-sm-8">
                     {% for employee in employees %}
                     <option value="{{employee[0]}}">{{employee[1]}} {{employee[2]}}</option>
                     {% endfor %}
