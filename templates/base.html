@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Employee Management Systems {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -19,9 +20,9 @@
       <ul class="navbar-nav mr-auto">
       </ul>
       <form class="form-inline mt-2 mt-md-0" method="POST" action="/login">
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="text" name="username" placeholder="Email" required>
-        <input class="form-control mr-sm-2 my-2 form-control-sm" type="password" name="password" placeholder="Password" required>
-        <button class="btn btn-secondary my-2 btn-sm" type="submit" name="submit" value="Log In">Login</button>
+        <input class="form-control mr-sm-2 my-2 form-control-md" type="text" name="username" placeholder="Username" required>
+        <input class="form-control mr-sm-2 my-2 form-control-md" type="password" name="password" placeholder="Password" required>
+        <button class="btn btn-primary my-2 btn-md" type="submit" name="submit" value="Log In">Login</button>
       </form>
     </div>
  </nav>
