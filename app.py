@@ -73,12 +73,23 @@ def dashboard():
 @app.route("/report", methods=["GET", "POST"])
 @login_required
 def report():
-    return render_template('report.html')
+    departments = department_controller.get_departments()
+    employees = employees_controller.get_employees_short()
+    employee = employee_service.initialize_employee_array()
+    return render_template('report.html', employees=employees, employee=employee, departments=departments)
+
+@app.route("/get-user-info", methods=['POST'])
+def get_user_info():
+    id = employee_service.get_id_from_field("selectUser")
+    departments = department_controller.get_departments()
+    employee = employees_controller.get_employee(id)
+    employees = employees_controller.get_employees_short()
+    return render_template('report.html', employees=employees, employee=employee, departments=departments)
 
 
 @app.route("/directory", methods=['GET', 'POST'])
 @login_required
-def department():
+def directory():
     departments = department_controller.get_departments()
     employees = employees_controller.get_employees()
 

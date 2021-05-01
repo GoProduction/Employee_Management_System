@@ -1,6 +1,7 @@
 from connection import connect_db
 import cx_Oracle
 from data.Classes.Employees import Employee
+from data.Classes.EmployeeInfo import EmployeeInfo
 
 # get all employees
 def get_employees():
@@ -18,11 +19,46 @@ def get_employees():
 
     return list
 
+# get all employees by only name and id; used for drop-down field
+def get_employees_short():
+    sql = "SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES"
+    list = []
+
+    conn = connect_db()
+    c = conn.cursor()
+    c.execute(sql)
+
+    for row in c:
+        list.append(row)
+
+    return list
 
 # get a single employee
 def get_employee(id):
-    return 0
-    ## TODO: select by id
+    empid = int(id)
+    emp_sql = """ SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = :empid """
+    info_sql = """ SELECT * FROM EMPLOYEE_INFO WHERE EMPLOYEE_ID = :empid """ 
+    list = []
+
+    conn = connect_db()
+    c = conn.cursor()
+    
+    # execute query for employees table
+    c.execute(emp_sql, [empid])
+    for row in c:
+        employee = Employee(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+        list.append(employee)
+
+    # execute query for employee info table
+    c.execute(info_sql, [empid])
+    for row in c:
+        info = EmployeeInfo(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
+        list.append(info)
+
+    # close connection
+    conn.close()
+
+    return list
 
 
 # get max id
