@@ -11,9 +11,9 @@
     <h1 class="h2">Add Employee</h1>
   </div>
 
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-sm-12">
-        <div class="card mb-4">
+        <div class="card mb-4 shadow">
           <h5 class="card-header">New Employee's Information</h5>
           <div class="card-body">
 
@@ -31,15 +31,15 @@
       <label for="inputSSN">Social Security Number</label>
       <input type="text" class="form-control" name="inputSSN" value="{{ data_list[1].ssn }}" placeholder="123-45-6789">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-3">
         <label for="inputLicense">License/ID #</label>
         <input type="text" class="form-control" name="inputLicense" value="{{ data_list[1].licenseID }}" placeholder="MD2000000000" />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
       <label for="inputEmail">Email</label>
       <input type="email" class="form-control" name="inputEmail" value="{{ data_list[0].email }}" placeholder="johndoe@example.com">
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="inputPhone">Phone Number</label>
       <input type="tel" class="form-control" name="inputPhone" value="{{ data_list[0].phone }}" placeholder="(123) - 456 - 7890">
     </div>
@@ -49,7 +49,7 @@
     <input type="text" class="form-control" name="inputAddress" value="{{ data_list[1].address }}" placeholder="1234 Main St">
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
       <label for="inputCity">City</label>
       <input type="text" class="form-control" value="{{ data_list[1].city }}" name="inputCity">
     </div>
@@ -62,19 +62,19 @@
         <option>North Carolina</option>
       </select>
     </div>
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-3">
       <label for="inputZip">Zip</label>
       <input type="number" class="form-control" name="inputZip" value="{{ data_list[1].zipcode }}">
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label for="inputDepartment">Department</label>
-      <select name="inputDepartment" class="form-control">
+      <select name="inputDepartment" class="custom-select">
           {% for dep in departments %}
           <option value="{{ dep.deptID }}" selected>{{ dep.deptTitle }}</option>
           {% endfor %}
       </select>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label for="inputTitle">Title</label>
       <input type="text" class="form-control" name="inputTitle" value="{{ data_list[0].title }}" placeholder="Software Engineer">
     </div>
