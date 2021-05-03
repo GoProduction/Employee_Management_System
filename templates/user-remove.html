@@ -23,9 +23,9 @@
 <form class="form-row form-inline" method="post">
     <div class="form-group col-md-6">
         <select class="custom-select mr-2 col-sm-8" name="selectField" id="category">
-            <option>Select a user...</option>
+            <option value="" selected disabled hidden>Select Employee...</option>
             {% for user in users %}
-            <option value={{user.empID}} selected>{{user.fname}} {{user.lname}}</option>
+            <option value={{user.empID}}>{{user.fname}} {{user.lname}}</option>
             {% endfor %}
         </select>
         <button class="btn btn-danger my-sm-0" type="submit">Delete</button>

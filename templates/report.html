@@ -22,6 +22,7 @@
               <form class="form-inline" method="post" action="/get-user-info">
                 <select name="selectUser" class="custom-select mr-2 col-sm-8">
                     {% for employee in employees %}
+                    <option value="" selected disabled hidden>Select Employee...</option>
                     <option value="{{employee[0]}}">{{employee[1]}} {{employee[2]}}</option>
                     {% endfor %}
                 </select>
@@ -71,7 +72,7 @@
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
       <select id="inputState" class="custom-select" value="{{employee[1].state}}">
-          <option value="">Choose...</option>
+          <option value="" selected disabled hidden>State...</option>
           <option value="Maryland"{% if employee[1].state=="Maryland"%} selected{% endif %}>Maryland</option>
           <option value="Virginia"{% if employee[1].state=="Virginia"%} selected{% endif %}>Virginia</option>
           <option value="North Carolina"{% if employee[1].state=="North Carolina"%} selected{% endif %}>North Carolina</option>
@@ -85,6 +86,7 @@
       <label for="inputdepartment">Department</label>
       <select name="inputDepartment" class="custom-select">
           {% for dep in departments %}
+          <option value="" selected disabled hidden>Department...</option>
           <option value="{{ dep.deptID }}"{% if employee[0].deptID==dep.deptID %} selected{% endif %}>{{ dep.deptTitle }}</option>
           {% endfor %}
       </select>
