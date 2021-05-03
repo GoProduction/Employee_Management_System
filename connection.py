@@ -17,7 +17,6 @@ if sys.platform.startswith("darwin"):
 # DB connector
 def connect_db():
     try:
-
         conn = cx_Oracle.connect(db_username, db_password, db_connection_string)
         print('Successful connection')
         return conn
