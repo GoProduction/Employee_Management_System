@@ -36,7 +36,7 @@
         <div class="card mb-2 shadow">
           <h5 class="card-header">Employee's Information</h5>
           <div class="card-body">
-
+{% if employee[0].empID != "" %}
 <form>
   <div class="form-row">
     <div class="form-group col-md-4">
@@ -86,8 +86,7 @@
       <label for="inputdepartment">Department</label>
       <select name="inputDepartment" class="custom-select">
           {% for dep in departments %}
-          <option value="" selected disabled hidden>Department...</option>
-          <option value="{{ dep.deptID }}"{% if employee[0].deptID==dep.deptID %} selected{% endif %}>{{ dep.deptTitle }}</option>
+          <option value="{{ dep.deptID }}"{% if employee[0].deptID==dep.deptID %} selected=employee[0].deptID {% endif %}>{{ dep.deptTitle }}</option>
           {% endfor %}
       </select>
     </div>
@@ -101,9 +100,11 @@
     </div>
 
   </div>
-  <button type="submit" class="btn btn-danger">Edit</button>
+  <button type="submit" class="btn btn-danger">Save</button>
 </form>
-
+{% else %}
+<h2>You must select an employee first.</h2>
+{% endif %}
 
           </div>
         </div>
