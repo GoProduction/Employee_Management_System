@@ -81,24 +81,23 @@ def get_latest_id():
 # add employee and employee info
 def add_employee(data_list):
     emp_sql = """ INSERT INTO EMPLOYEES(DEPARTMENT_ID, FIRST_NAME, LAST_NAME, TITLE, PHONE, EMAIL)
-                    VALUES(:depID, :f2ame, :l2ame, :title, :phone, :email)"""
+                    VALUES(:depID, :fname, :lname, :title, :phone, :email)"""
     emp_info_sql = """ INSERT INTO EMPLOYEE_INFO(EMPLOYEE_ID, STREET_ADDRESS, CITY, STATE, ZIP_CODE, LICENSE_ID, SS_NUMBER)
                         VALUES(:empID, :address, :city, :state, :zipcode, :licenseID, :ssn)"""
     try:
-        # since cx_Oracle does not support tuples, the properties need to be
-            # instantiated separately. It's kind of ugly, but it is what it is...
-        depID = int(data_list[0])
-        title = str(data_list[1])
-        fname = str(data_list[2])
-        lname = str(data_list[3])
-        phone = int(data_list[4])
-        email = str(data_list[5])
-        address = str(data_list[6])
-        city = str(data_list[7])
-        state = str(data_list[8])
-        zip = int(data_list[9])
-        licenseID = str(data_list[10])
-        ssn = int(data_list[11])
+        
+        depID = int(data_list[0].deptID)
+        title = str(data_list[0].title)
+        fname = str(data_list[0].fname)
+        lname = str(data_list[0].lname)
+        phone = int(data_list[0].phone)
+        email = str(data_list[0].email)
+        address = str(data_list[1].address)
+        city = str(data_list[1].address)
+        state = str(data_list[1].state)
+        zip = int(data_list[1].zipcode)
+        licenseID = str(data_list[1].licenseID)
+        ssn = int(data_list[1].ssn)
 
         conn = connect_db()
         c = conn.cursor()
@@ -115,9 +114,59 @@ def add_employee(data_list):
         conn.commit()
 
         conn.close()
-    except (RuntimeError, TypeError, NameError):
+    except Exception as e:
         print("error on add_employee()")
+        print(e)
 
+
+# saves employee on edit (report) page
+def save_employee(employee):
+    emp_sql = """ UPDATE EMPLOYEES 
+                    SET DEPARTMENT_ID = :depID,
+                    FIRST_NAME = :fname,
+                    LAST_NAME = :lname,
+                    TITLE = :title,
+                    PHONE = :phone,
+                    EMAIL = :email
+                   WHERE EMPLOYEE_ID = :empID """
+
+    emp_info_sql = """ UPDATE EMPLOYEE_INFO
+                        SET STREET_ADDRESS = :address,
+                        CITY = :city,
+                        STATE = :state,
+                        ZIP_CODE = :zip,
+                        LICENSE_ID = :licenseID,
+                        SS_NUMBER = :ssn
+                       WHERE EMPLOYEE_ID = :empID """
+
+    try:
+        empID = int(employee[0].empID)
+        depID = int(employee[0].deptID)
+        title = str(employee[0].title)
+        fname = str(employee[0].fname)
+        lname = str(employee[0].lname)
+        phone = int(employee[0].phone)
+        email = str(employee[0].email)
+        address = str(employee[1].address)
+        city = str(employee[1].city)
+        state = str(employee[1].state)
+        zip = int(employee[1].zipcode)
+        licenseID = str(employee[1].licenseID)
+        ssn = int(employee[1].ssn)
+
+        conn = connect_db()
+        c = conn.cursor()
+        
+        # update Employee table
+        c.execute(emp_sql, {'depID': depID, 'fname': fname, 'lname': lname, 'title': title, 'phone': phone, 'email': email, 'empID': empID})
+        conn.commit()
+        c.execute(emp_info_sql, {'address': address, 'city': city, 'state': state, 'zip': zip, 'licenseID': licenseID, 'ssn': ssn, 'empID': empID})
+        conn.commit()
+
+        conn.close()
+
+    except (RuntimeError, TypeError, NameError):
+        print("error on save_employee()")
 
 # removes employee after providing employee id
 def remove_employee(id):
@@ -134,9 +183,9 @@ def remove_employee(id):
         print("error on remove_employee()")
 
 # check for email
-def email_is_taken(email):
+def email_is_taken(id, email):
     found_email = []
-    sql = "SELECT NVL(EMAIL, 'empty') AS EMAIL FROM EMPLOYEES WHERE EMAIL = :email"
+    sql = "SELECT NVL(EMAIL, 'empty') AS EMAIL, EMPLOYEE_ID AS EMPID FROM EMPLOYEES WHERE EMAIL = :email"
 
     conn = connect_db()
     c = conn.cursor()
@@ -146,7 +195,13 @@ def email_is_taken(email):
         print("Row: ", row)
         found_email.append(row)
 
-    if (found_email == []):
+    print(found_email[0][1])
+
+    if (id != ""):
+        if(found_email[0][1] == id):
+            print("Valid email")
+            return False
+    elif (found_email == []):
         print("Provided email is open")
         return False
     else:
