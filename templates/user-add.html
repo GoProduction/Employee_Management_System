@@ -22,6 +22,7 @@
 <form method="post">
   <div class="form-row">
     <div class="form-group col-md-4">
+      <input name="idField" style="visibility: hidden" value="{{ data_list[0].empID }}"/>
       <label for="inputFirstname">First Name</label>
       <input id="inputFirstName" type="text" class="form-control" name="inputFirstname" value="{{ data_list[0].fname }}" placeholder="John">
     </div>
@@ -58,7 +59,7 @@
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
       <select name="inputState" value="{{ data_list[1].state }}" class="custom-select">
-        <option value="" selected disabled hidden>State...</option>
+        <option value=-1>State...</option>
         <option>Maryland</option>
         <option>Virginia</option>
         <option>North Carolina</option>
@@ -72,7 +73,7 @@
       <label for="inputDepartment">Department</label>
       <select name="inputDepartment" class="custom-select">
           {% for dep in departments %}
-          <option value="" selected disabled hidden>Department...</option>
+          <option value=-1>Department...</option>
           <option value="{{ dep.deptID }}">{{ dep.deptTitle }}</option>
           {% endfor %}
       </select>
