@@ -78,6 +78,7 @@ def report():
     employee = employee_service.initialize_employee_array()
     return render_template('report.html', employees=employees, employee=employee, departments=departments)
 
+
 @app.route("/get-user-info", methods=['POST'])
 def get_user_info():
     id = employee_service.get_id_from_field("selectUser")
@@ -85,6 +86,25 @@ def get_user_info():
     employee = employees_controller.get_employee(id)
     employees = employees_controller.get_employees_short()
     return render_template('report.html', employees=employees, employee=employee, departments=departments)
+
+
+@app.route("/save-user-info", methods=['POST'])
+def save_user_info():
+    # instantiate all values first
+    messages = []
+    id = employee_service.get_id_from_field("idField")
+    departments = department_controller.get_departments()
+    employee = employees_controller.get_employee(id)
+    employees = employees_controller.get_employees_short()
+    
+    messages = employee_service.validate_employee_fields()
+    # if there are errors returned from validation method:
+    if(messages[0] != "Success!"):
+        return render_template('report.html', employees=employees, employee=employee, departments=departments, messages=messages)
+    else:
+        employees_controller.save_employee(employee)
+        employee = employees_controller.get_employee(id)
+        return render_template('report.html', employees=employees, employee=employee, departments=departments, messages=messages)
 
 
 @app.route("/directory", methods=['GET', 'POST'])
@@ -110,22 +130,20 @@ def user_add():
     departments = department_controller.get_departments()
 
     if request.method == 'POST':
-        message = employee_service.add_employee_event()
+        message = employee_service.validate_employee_fields()
 
-        if (message[0] != "Successfully created a new employee!"):
-            # collect field data into list (Employee, EmployeeInfo)
-            data_list = employee_service.transfer_field_state()
-
-            # debug
-            for val in data_list:
-                print(val)
-
-            # call add_employee method from controller
-            employees_controller.add_employee(data_list)
+        # collect field data into list (Employee, EmployeeInfo)
+        data_list = employee_service.transfer_field_state()
+        # if there are errors returned from validation method:
+        if (message[0] != "Success!"):
+            
+            
 
             # return render template
             return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
         else:
+            # call add_employee method from controller
+            employees_controller.add_employee(data_list)
             return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
     else:
         return render_template('user-add.html', message=message, departments=departments, data_list=data_list)
