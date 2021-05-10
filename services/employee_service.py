@@ -24,11 +24,12 @@ def sort_employee_list(list):
     return sorted_list
 
 # add employee method for the add-user page
-def add_employee_event():
+def validate_employee_fields():
     try:
         message = []
 
         # initialize variables
+        id = request.form['idField']
         first_name = request.form['inputFirstname']
         last_name = request.form['inputLastname']
         ssn = request.form['inputSSN']
@@ -40,60 +41,61 @@ def add_employee_event():
         state = request.form.get('inputState')
         zip = request.form['inputZip']
         title = request.form['inputTitle']
-        #department = request.form['inputDepartment'].upper()
+        department = request.form.get('inputDepartment')
 
         # run validation
         # first_name
-        data = validation.validate_field("first_name", first_name)
+        data = validation.validate_field(id, "first_name", first_name)
         if(data != "Pass"):
             message.append(data)
         # last_name
-        data = validation.validate_field("last_name", last_name)
+        data = validation.validate_field(id, "last_name", last_name)
         if(data != "Pass"):
             message.append(data)
         # social security number
-        data = validation.validate_field("ssn", ssn)
+        data = validation.validate_field(id, "ssn", ssn)
         if(data != "Pass"):
             message.append(data)
         # license
-        data = validation.validate_field("license", license)
+        data = validation.validate_field(id, "license", license)
         if(data != "Pass"):
             message.append(data)
         # email
-        data = validation.validate_field("email", email)
+        data = validation.validate_field(id, "email", email)
         if(data != "Pass"):
             message.append(data)
         # phone
-        data = validation.validate_field("phone", phone)
+        data = validation.validate_field(id, "phone", phone)
         if(data != "Pass"):
             message.append(data)
         # address
-        data = validation.validate_field("address", address)
+        data = validation.validate_field(id, "address", address)
         if(data != "Pass"):
             message.append(data)
         # city
-        data = validation.validate_field("city", city)
+        data = validation.validate_field(id, "city", city)
         if(data != "Pass"):
             message.append(data)
         # state
-        data = validation.validate_field("state", state)
+        data = validation.validate_field(id, "state", state)
         if(data != "Pass"):
             message.append(data)
         # zip
-        data = validation.validate_field("zip", zip)
+        data = validation.validate_field(id, "zip", zip)
         if(data != "Pass"):
             message.append(data)
-        # department ( leave empty for now )
-        #if(validation.validate_field("department", department) == False):
-         #   message.append("Invalid department")
-        # title
-        data = validation.validate_field("title", title)
+        data = validation.validate_field(id, "title", title)
+        if(data != "Pass"):
+            message.append(data)
+        # department
+        data = validation.validate_field(id, "department", department)
         if(data != "Pass"):
             message.append(data)
 
-        # SUCCESS
-        else:
-            message.append("Successfully created a new employee!")
+        # if message is empty at end of check, append 'Success!' to it
+        if (message == []):
+            message.append('Success!')
+        
         return message
     except ValueError:
         print("Must be a number.")
@@ -102,6 +104,7 @@ def add_employee_event():
 def transfer_field_state():
     list = []
 
+    id = request.form['idField']
     first_name = request.form['inputFirstname']
     last_name = request.form['inputLastname']
     ssn = request.form['inputSSN']
@@ -115,11 +118,12 @@ def transfer_field_state():
     title = request.form['inputTitle']
     license = request.form['inputLicense']
     
-    #employee = Employee("", department, first_name, last_name, title, phone, email)
-    #employee_info = EmployeeInfo("", "", address, city, state, zip, license, ssn)
-                #0             1    2           3           4       5       6     7     8      9    10      11
-    list.extend([department, title, first_name, last_name, phone, email, address, city, state, zip, license, ssn])
+    employee = Employee(id, department, first_name, last_name, title, phone, email)
+    employee_info = EmployeeInfo("", id, address, city, state, zip, license, ssn)
 
+    list.append(employee)
+    list.append(employee_info)
+    
     return list
 
 # initializes array to join Employee and EmployeeInfo objects
