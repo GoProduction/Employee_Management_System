@@ -21,9 +21,8 @@
 
               <form class="form-inline" method="post" action="/get-user-info">
                 <select name="selectUser" class="custom-select mr-2 col-sm-8">
-                    {% for employee in employees %}
-                    <option value="" selected disabled hidden>Select Employee...</option>
-                    <option value="{{employee[0]}}">{{employee[1]}} {{employee[2]}}</option>
+                    {% for emp in employees %}
+                    <option value="{{emp[0]}}" {% if emp[0] == employee[0].empID %} selected {% endif %}>{{emp[1]}} {{emp[2]}}</option>
                     {% endfor %}
                 </select>
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Get Info</button>
@@ -37,41 +36,42 @@
           <h5 class="card-header">Employee's Information</h5>
           <div class="card-body">
 {% if employee[0].empID != "" %}
-<form>
+<form action="/save-user-info" method="post">
+  <input style="visibility:hidden" name="idField" value="{{employee[0].empID}}" />     
   <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="inputfirstname">First Name</label>
-      <input type="text" class="form-control" id="inputfirstname" placeholder="John" value="{{employee[0].fname}}">
+      <label for="inputFirstname">First Name</label>
+      <input type="text" class="form-control" name="inputFirstname" placeholder="John" value="{{employee[0].fname}}">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputlastname">Last Name</label>
-      <input type="text" class="form-control" id="inputlastname" placeholder="Doe" value="{{employee[0].lname}}">
+      <label for="inputLastname">Last Name</label>
+      <input type="text" class="form-control" name="inputLastname" placeholder="Doe" value="{{employee[0].lname}}">
     </div>
     <div class="form-group col-md-2">
-      <label for="inputssd">Social Security Number</label>
-      <input type="text" class="form-control" id="inputssd" placeholder="123-45-6789" value="{{employee[1].ssn}}">
+      <label for="inputSSN">Social Security Number</label>
+      <input type="text" class="form-control" name="inputSSN" placeholder="123-45-6789" value="{{employee[1].ssn}}">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="johndoe@example.com" value="{{employee[0].email}}">
+      <label for="inputEmail">Email</label>
+      <input type="email" class="form-control" name="inputEmail" placeholder="johndoe@example.com" value="{{employee[0].email}}">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputphone">Phone Number</label>
-      <input type="text" class="form-control" id="inputphone" placeholder="(123) - 456 - 7890" value="{{employee[0].phone}}">
+      <label for="inputPhone">Phone Number</label>
+      <input type="text" class="form-control" name="inputPhone" placeholder="(123) - 456 - 7890" value="{{employee[0].phone}}">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value="{{employee[1].address}}">
+    <input type="text" class="form-control" name="inputAddress" placeholder="1234 Main St" value="{{employee[1].address}}">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" value="{{employee[1].city}}">
+      <input type="text" class="form-control" name="inputCity" value="{{employee[1].city}}">
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
-      <select id="inputState" class="custom-select" value="{{employee[1].state}}">
+      <select name="inputState" class="custom-select" value="{{employee[1].state}}">
           <option value="" selected disabled hidden>State...</option>
           <option value="Maryland"{% if employee[1].state=="Maryland"%} selected{% endif %}>Maryland</option>
           <option value="Virginia"{% if employee[1].state=="Virginia"%} selected{% endif %}>Virginia</option>
@@ -80,7 +80,7 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip" value="{{employee[1].zipcode}}">
+      <input type="text" class="form-control" name="inputZip" value="{{employee[1].zipcode}}">
     </div>
     <div class="form-group col-md-4">
       <label for="inputdepartment">Department</label>
@@ -91,16 +91,21 @@
       </select>
     </div>
     <div class="form-group col-md-4">
-      <label for="inputtitle">Title</label>
-      <input value="{{employee[0].title}}" type="text" class="form-control" id="inputtitle" placeholder="Software Engineer">
+      <label for="inputTitle">Title</label>
+      <input value="{{employee[0].title}}" type="text" class="form-control" name="inputTitle" placeholder="Software Engineer">
     </div>
     <div class="form-group col-md-4">
-      <label for="inputid">License/ID #</label>
-      <input value="{{employee[1].licenseID}}" type="text" class="form-control" id="inputid" placeholder="12345678">
+      <label for="inputLicense">License/ID #</label>
+      <input value="{{employee[1].licenseID}}" type="text" class="form-control" name="inputLicense" placeholder="12345678">
     </div>
 
   </div>
   <button type="submit" class="btn btn-danger">Save</button>
+  <ul>
+      {% for error in messages %}
+        <li>{{error}}</li>
+      {% endfor %}
+  </ul>
 </form>
 {% else %}
 <h2>You must select an employee first.</h2>
