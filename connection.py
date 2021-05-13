@@ -5,8 +5,8 @@ import cx_Oracle
 
 
 # connection properties for Oracle Cloud DB
-db_username = "ADMIN"
-db_password = "nb9QRpFzHEQgbV3"
+db_username = "app_user"
+db_password = "oY@@flS7kGRV"
 db_connection_string = "tcps://adb.us-ashburn-1.oraclecloud.com:1522/sdxlk72ygu0rs6u_db202104011218_medium.adb.oraclecloud.com?wallet_location=network/wallet"
 
 # for macOS users

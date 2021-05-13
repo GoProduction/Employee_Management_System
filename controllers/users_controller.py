@@ -4,7 +4,7 @@ import cx_Oracle
 
 def get_user(username, password):
     found_user = []
-    sql = "select * from users where user_name = :username and user_pass = :password"
+    sql = "select * from admin.users where user_name = :username and user_pass = :password"
     conn = connect_db()
     c = conn.cursor()
 

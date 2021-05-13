@@ -8,7 +8,7 @@ def get_tasks():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM TASKS")
+    c.execute("SELECT * FROM ADMIN.TASKS")
 
     for row in c:
         task = Tasks(row[0], row[1], row[2], row[3], row[4])

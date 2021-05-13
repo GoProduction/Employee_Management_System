@@ -9,7 +9,7 @@ def get_employees():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM EMPLOYEES")
+    c.execute("SELECT * FROM ADMIN.EMPLOYEES")
 
     for row in c:
         employee = Employee(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
@@ -21,7 +21,7 @@ def get_employees():
 
 # get all employees by only name and id; used for drop-down field
 def get_employees_short():
-    sql = "SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES"
+    sql = "SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM ADMIN.EMPLOYEES"
     list = []
 
     conn = connect_db()
@@ -36,8 +36,8 @@ def get_employees_short():
 # get a single employee
 def get_employee(id):
     empid = int(id)
-    emp_sql = """ SELECT * FROM EMPLOYEES WHERE EMPLOYEE_ID = :empid """
-    info_sql = """ SELECT * FROM EMPLOYEE_INFO WHERE EMPLOYEE_ID = :empid """ 
+    emp_sql = """ SELECT * FROM ADMIN.EMPLOYEES WHERE EMPLOYEE_ID = :empid """
+    info_sql = """ SELECT * FROM ADMIN.EMPLOYEE_INFO WHERE EMPLOYEE_ID = :empid """ 
     list = []
 
     conn = connect_db()
@@ -63,7 +63,7 @@ def get_employee(id):
 
 # get max id
 def get_latest_id():
-    max_id_sql = "SELECT NVL(MAX(EMPLOYEE_ID), 0) AS MAX_ID FROM EMPLOYEES"
+    max_id_sql = "SELECT NVL(MAX(EMPLOYEE_ID), 0) AS MAX_ID FROM ADMIN.EMPLOYEES"
     conn = connect_db()
     c = conn.cursor()
     c.execute(max_id_sql)
@@ -80,9 +80,9 @@ def get_latest_id():
 
 # add employee and employee info
 def add_employee(data_list):
-    emp_sql = """ INSERT INTO EMPLOYEES(DEPARTMENT_ID, FIRST_NAME, LAST_NAME, TITLE, PHONE, EMAIL)
+    emp_sql = """ INSERT INTO ADMIN.EMPLOYEES(DEPARTMENT_ID, FIRST_NAME, LAST_NAME, TITLE, PHONE, EMAIL)
                     VALUES(:depID, :fname, :lname, :title, :phone, :email)"""
-    emp_info_sql = """ INSERT INTO EMPLOYEE_INFO(EMPLOYEE_ID, STREET_ADDRESS, CITY, STATE, ZIP_CODE, LICENSE_ID, SS_NUMBER)
+    emp_info_sql = """ INSERT INTO ADMIN.EMPLOYEE_INFO(EMPLOYEE_ID, STREET_ADDRESS, CITY, STATE, ZIP_CODE, LICENSE_ID, SS_NUMBER)
                         VALUES(:empID, :address, :city, :state, :zipcode, :licenseID, :ssn)"""
     try:
         
@@ -121,7 +121,7 @@ def add_employee(data_list):
 
 # saves employee on edit (report) page
 def save_employee(employee):
-    emp_sql = """ UPDATE EMPLOYEES 
+    emp_sql = """ UPDATE ADMIN.EMPLOYEES 
                     SET DEPARTMENT_ID = :depID,
                     FIRST_NAME = :fname,
                     LAST_NAME = :lname,
@@ -130,7 +130,7 @@ def save_employee(employee):
                     EMAIL = :email
                    WHERE EMPLOYEE_ID = :empID """
 
-    emp_info_sql = """ UPDATE EMPLOYEE_INFO
+    emp_info_sql = """ UPDATE ADMIN.EMPLOYEE_INFO
                         SET STREET_ADDRESS = :address,
                         CITY = :city,
                         STATE = :state,
@@ -171,7 +171,7 @@ def save_employee(employee):
 # removes employee after providing employee id
 def remove_employee(id):
     try:
-        sql = """ DELETE FROM EMPLOYEES WHERE EMPLOYEE_ID = :id """
+        sql = """ DELETE FROM ADMIN.EMPLOYEES WHERE EMPLOYEE_ID = :id """
         conn = connect_db()
         c = conn.cursor()
 
@@ -185,7 +185,7 @@ def remove_employee(id):
 # check for email
 def email_is_taken(id, email):
     found_email = []
-    sql = "SELECT NVL(EMAIL, 'empty') AS EMAIL, EMPLOYEE_ID AS EMPID FROM EMPLOYEES WHERE EMAIL = :email"
+    sql = "SELECT NVL(EMAIL, 'empty') AS EMAIL, EMPLOYEE_ID AS EMPID FROM ADMIN.EMPLOYEES WHERE EMAIL = :email"
 
     conn = connect_db()
     c = conn.cursor()

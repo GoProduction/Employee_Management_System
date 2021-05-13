@@ -9,7 +9,7 @@ def get_departments():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM DEPARTMENT")
+    c.execute("SELECT * FROM ADMIN.DEPARTMENT")
 
     for row in c:
         department = Department(row[0], row[1])

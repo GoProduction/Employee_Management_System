@@ -8,7 +8,7 @@ def get_info():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM EMPLOYEE_INFO")
+    c.execute("SELECT * FROM ADMIN.EMPLOYEE_INFO")
 
     for row in c:
         info = EmployeeInfo(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])

@@ -8,7 +8,7 @@ def get_status():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM STATUS")
+    c.execute("SELECT * FROM ADMIN.STATUS")
 
     for row in c:
         status = Status(row[0], row[1])

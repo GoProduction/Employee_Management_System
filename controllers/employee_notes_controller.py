@@ -8,7 +8,7 @@ def get_notes():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM EMPLOYEE_NOTES")
+    c.execute("SELECT * FROM ADMIN.EMPLOYEE_NOTES")
 
     for row in c:
         note = EmployeeNotes(row[0], row[1], row[2], row[3])

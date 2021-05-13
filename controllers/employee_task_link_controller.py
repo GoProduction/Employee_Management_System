@@ -8,7 +8,7 @@ def get_link():
     c = conn.cursor()
     list = []
 
-    c.execute("SELECT * FROM EMPLOYEE_TASK_LINK")
+    c.execute("SELECT * FROM ADMIN.EMPLOYEE_TASK_LINK")
 
     for row in c:
         link = EmployeeTaskLink(row[0], row[1], row[2])
