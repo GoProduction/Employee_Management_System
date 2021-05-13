@@ -19,26 +19,26 @@ Python, Flask, Oracle RDBMS, Bootstrap, HTML, CSS
 
 # Table of Contents
 
-## Overview
+## [Overview](#overview)
 
-## Project Plan
+## [Project Plan](#pp)
 
-## Requirements Specification
+## [Requirements Specification](#rs)
 
-## System Specification
+## [System Specification](#ss)
 
-## User’s Guide
+## [User’s Guide](#ug)
 
-## Test Plan and Results
+## [Test Plan and Results](#tp)
 
-## Design and Alternate Designs
+## [Current and Alternate Designs](#designs)
 
-## Development History
+## [Development History](#dh)
 
-## Conclusions
+## [Conclusions](#conclusion)
 
 
-## Overview
+## <a name="overview"></a>Overview
 
 Our team’s goal was to develop a solution to common internal management problem.
 We set out this goal by creating an employee management system that would help
@@ -106,7 +106,7 @@ overall design architecture of the web application. She was responsible for the
 design and information of various pages by utilizing the front-end framework as
 discussed.
 
-## Project Plan
+## <a name="pp"></a>Project Plan
 
 **Project Description**
 
@@ -212,7 +212,7 @@ that only company administrators have access to the sensitive data.
 
 *Note: Struck out milestones were removed from the final project*
 
-## Requirements Specification
+## <a name="rs"></a>Requirements Specification
 
 | **Requirement ID** | **Requirement Type** | **Requirement Description**                                                                            | **Areas Affected**          |
 |--------------------|----------------------|--------------------------------------------------------------------------------------------------------|-----------------------------|
@@ -235,7 +235,7 @@ that only company administrators have access to the sensitive data.
 
 *Note: Struck out requirements were removed from the final project*
 
-## System Specification
+## <a name="ss"></a>System Specification
 
 The project will be built with the following technologies:
 
@@ -265,7 +265,7 @@ The project requires the following client to connect to the Oracle database:
 
     -   Download available on Oracle’s website
 
-## User’s Guide
+## <a name="ug"></a>User’s Guide
 
 **Home Page**
 
@@ -431,7 +431,7 @@ The project requires the following client to connect to the Oracle database:
 <img src="/readme_images/img9.jpg" />
 *Figure 9 - Logout*
 
-## Test Plan and Results
+## <a name="tp"></a>Test Plan and Results
 
 | **Page**                                          | **Functionality**                 | **Test Case**                                                                                            | **Inputs**                                                                                                                                     | **Expected Output**                                                                                                                                                                | **Pass/Fail** |
 |---------------------------------------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -483,7 +483,7 @@ workaround for this bug is to delete the user and recreate a new user with the
 corrected/updated information. This bug will be addressed in a future release of
 EMS.
 
-## Design and Alternate Designs
+## <a name="designs"></a>Design and Alternate Designs
 
 **Database Design**
 
@@ -684,7 +684,7 @@ are no longer being used:
 <img src="/readme_images/img26.jpg" />
 *Figure 26 - Original Informational Guide design*
 
-## Development History
+## <a name="dh"></a>Development History
 
 **Items Removed from Project Scope**
 
@@ -715,7 +715,7 @@ project.
 | Finalized Back-end Services                                         | 4 May 2021         |
 | Implement Validation Regular Expressions                            | 10 May 2021        |
 
-## Conclusions
+## <a name="conclusion"></a>Conclusions
 
 **Lessons Learned**
 
